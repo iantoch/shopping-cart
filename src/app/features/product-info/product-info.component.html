@@ -1,0 +1,22 @@
+<mat-dialog-actions align="end">
+  <button class="close-btn" mat-button mat-dialog-close>X</button>
+</mat-dialog-actions>
+
+<mat-dialog-content class="content">
+  <div>
+    <img class="product-image" [src]="product.image" [alt]="product.name" />
+  </div>
+  <div>
+    <h2 mat-dialog-title>{{ product.name }}</h2>
+    <app-button (click)="addToCart()">Add to cart</app-button>
+    <p class="product-description">{{ product.description }}</p>
+    <div class="reviews">
+      <h3>Reviews:</h3>
+      <ul>
+        @for (review of product.reviews; track $index) {
+        <li>{{ review }}</li>
+        }
+      </ul>
+    </div>
+  </div>
+</mat-dialog-content>

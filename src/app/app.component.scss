@@ -1,0 +1,54 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fef9f6;
+  padding: 0.5rem 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-bottom: 4px solid #e6e6e6;
+  margin-bottom: 3rem;
+
+  .navbar-logo {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: 40px;
+      width: auto;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      object-fit: contain;
+    }
+  }
+
+  .navbar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: #6b705c;
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  .navbar-cart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    mat-icon {
+      font-size: 2rem;
+      color: #d4a373;
+      transition: transform 0.2s ease-in-out, color 0.2s;
+
+      &:hover {
+        transform: scale(1.1);
+        color: #cb997e;
+      }
+    }
+  }
+}
