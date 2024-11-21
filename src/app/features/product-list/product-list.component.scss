@@ -53,11 +53,14 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .card-link {
+    cursor: pointer;
   }
 
   .card-image {
@@ -90,21 +93,8 @@
     }
   }
 
-  .add-to-cart-btn {
-    background: #1976d2;
-    color: #fff;
-    border: none;
-    padding: 0.75rem;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 0 0 12px 12px;
-    cursor: pointer;
-    transition: background 0.2s;
-
-    &:hover {
-      background: #115293;
-    }
+  .action {
+    display: flex;
   }
 }
 

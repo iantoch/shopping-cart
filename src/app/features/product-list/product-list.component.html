@@ -6,16 +6,18 @@
     {{ isFilterCollapsed ? "Show Filters" : "Hide Filters" }}
   </button>
   <div class="product-grid">
-    @for (product of products; track $index) {
-    <div class="card" (click)="openDialog(product)">
-      <img class="card-image" [src]="product.image" [alt]="product.name" />
-      <div class="card-content">
-        <h3 class="title">{{ product.name }}</h3>
-        <p class="price">${{ product.price }}</p>
-        <p class="rating">Rating: ⭐{{ product.rating }}</p>
+    @for (product of products$ | async; track $index) {
+    <div class="card">
+      <div class="card-link" (click)="openDialog(product)">
+        <img class="card-image" [src]="product.image" [alt]="product.name" />
+        <div class="card-content">
+          <h3 class="title">{{ product.name }}</h3>
+          <p class="price">${{ product.price }}</p>
+          <p class="rating">Rating: ⭐{{ product.rating }}</p>
+        </div>
       </div>
       <div class="action">
-        <app-button>Add to Cart</app-button>
+        <app-button (click)="addToCart(product)">Add to Cart</app-button>
       </div>
     </div>
     }

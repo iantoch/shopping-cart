@@ -1,45 +1,66 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, Output, EventEmitter } from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormArray,
+  ReactiveFormsModule,
+  AbstractControl,
+} from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import {
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  switchMap,
+} from 'rxjs/operators';
 
 @Component({
   selector: 'app-filters',
   standalone: true,
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './filters.component.html',
-  styleUrl: './filters.component.scss',
 })
 export class FiltersComponent {
-  @Output() filtersChange = new EventEmitter<any>();
-
-  searchText: string = '';
-  selectedType: string = 'All';
-  selectedPrices: string[] = [];
-
-  types: string[] = ['All', 'TVs', 'Appliances', 'Phones', 'Video Games'];
+  filterForm: FormGroup;
+  types: string[] = ['TVs', 'Appliances', 'Phones', 'Video Games', 'All'];
   priceRanges = [
-    { label: '$0 - $100', value: '0-100' },
-    { label: '$101 - $500', value: '101-500' },
-    { label: '$501 - $1000', value: '501-1000' },
-    { label: '$1001+', value: '1001+' },
+    { label: '$0 - $50', value: '0-50' },
+    { label: '$50 - $100', value: '50-100' },
+    { label: '$100 - $200', value: '100-200' },
+    { label: '$200+', value: '200+' },
   ];
 
-  onPriceChange(event: Event): void {
-    const checkbox = event.target as HTMLInputElement;
-    if (checkbox.checked) {
-      this.selectedPrices.push(checkbox.value);
-    } else {
-      this.selectedPrices = this.selectedPrices.filter(
-        (price) => price !== checkbox.value
-      );
-    }
-    this.onFilterChange();
+  @Output() filtersChanged = new EventEmitter<any>();
+
+  constructor(private fb: FormBuilder) {
+    this.filterForm = this.fb.group({
+      search: ['', [this.debounceSearchValidator()]],
+      selectedType: ['All'],
+      priceRanges: this.fb.array(
+        this.priceRanges.map(() => this.fb.control(false))
+      ),
+    });
+
+    this.filterForm.valueChanges.subscribe((values) => {
+      this.filtersChanged.emit(values);
+      console.log(values);
+    });
   }
 
-  onFilterChange(): void {
-    this.filtersChange.emit({
-      searchText: this.searchText,
-      selectedType: this.selectedType,
-      selectedPrices: this.selectedPrices,
+  debounceSearchValidator() {
+    return (control: AbstractControl): Observable<string> => {
+      return control.valueChanges.pipe(
+        debounceTime(500),
+        distinctUntilChanged()
+      );
+    };
+  }
+
+  onSearch(searchText: string) {
+    const filters = this.filterForm.value;
+    this.filtersChanged.emit({
+      ...filters,
+      search: searchText,
     });
   }
 }

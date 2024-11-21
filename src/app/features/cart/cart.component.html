@@ -1,1 +1,24 @@
-<p>cart works!</p>
+<!-- @if ((cartProducts$ | async)?.length > 0) { -->
+<div>
+  <div *ngFor="let product of cartProducts$ | async">
+    <div class="cart-item">
+      <img [src]="product.image" alt="{{ product.name }}" />
+      <div class="item-details">
+        <h3>{{ product.name }}</h3>
+        <p>Price: {{ product.price | currency }}</p>
+        <p>Rating: {{ product.rating }} stars</p>
+        <button (click)="removeFromCart(product.id)">Remove</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="total">
+    <h3>Total Price: {{ cartTotalPrice$ | async | currency }}</h3>
+  </div>
+</div>
+<!-- }  -->
+@if ((cartProducts$ | async)?.length === 0) {
+<div>
+  <p>Your cart is empty!</p>
+</div>
+}
