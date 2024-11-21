@@ -1,14 +1,22 @@
 <header class="header">
   <nav class="navbar">
-    <div class="navbar-logo">
-      <img src="assets/images/logo.jpg" alt="Logo" />
-    </div>
     <div class="navbar-title">
       <a routerLink="/" routerLinkActive="router-link-active">SuperStore</a>
     </div>
-    <a routerLink="/cart" routerLinkActive="router-link-active"
-      >Shopping Cart</a
-    >
+    <a routerLink="/cart" routerLinkActive="router-link-active">
+      <div class="shopping-bin">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="shopping-bin-icon"
+        >
+          <path
+            d="M7 4H3v2h2l3.6 7.59-1.35 2.44C6.52 16.37 7.48 18 9 18h10v-2H9.42c-.14 0-.25-.11-.25-.25L9.75 14h7.24c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.3.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1V4h6zM17 20c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm-10 0c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"
+          />
+        </svg>
+      </div>
+    </a>
   </nav>
 </header>
 <div class="content">

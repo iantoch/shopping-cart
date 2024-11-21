@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { CartProduct } from '../state.model';
 import { Product } from '../../core/types/product';
 
 export const addProductToCart = createAction(

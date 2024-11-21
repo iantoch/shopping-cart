@@ -34,7 +34,7 @@ export class ProductInfoComponent {
     let product = this.product;
     this.store.dispatch(addProductToCart({ product }));
     this.snackBar.open(`${this.product.name} added to cart!`, 'Close', {
-      duration: 3000,
+      duration: 2000,
       verticalPosition: 'top',
       horizontalPosition: 'right',
     });

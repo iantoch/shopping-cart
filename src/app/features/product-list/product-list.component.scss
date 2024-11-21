@@ -11,8 +11,6 @@
 
 .filter-panel {
   flex: 0 0 250px;
-  background-color: #f8f9fa;
-  border-right: 1px solid #ddd;
   padding: 1rem;
   overflow-y: auto;
   transition: transform 0.3s ease-in-out;
@@ -45,9 +43,7 @@
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
+  padding: 1rem;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -60,27 +56,30 @@
   }
 
   .card-link {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
     cursor: pointer;
   }
 
   .card-image {
-    width: 100%;
+    width: 80%;
     height: 200px;
+    align-self: center;
     object-fit: contain;
   }
 
   .card-content {
-    padding: 1rem;
-
+    margin-bottom: 2rem;
     .title {
-      font-size: 1.25rem;
+      font-size: 2rem;
       font-weight: bold;
       margin: 0 0 0.5rem;
       color: #333;
     }
 
     .price {
-      font-size: 1.1rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: #388e3c;
       margin: 0 0 0.5rem;
@@ -91,10 +90,6 @@
       color: #ffa000;
       margin: 0;
     }
-  }
-
-  .action {
-    display: flex;
   }
 }
 
@@ -120,9 +115,13 @@
 
   .toggle-filter {
     display: block;
+    width: 200px;
+    align-self: end;
+    margin-right: 1rem;
   }
 
   .product-grid {
     margin-top: 3rem;
+    padding: 0;
   }
 }

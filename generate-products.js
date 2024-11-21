@@ -1,9 +1,10 @@
 var casual = require("casual");
 var fs = require("fs");
 
+const count = 50;
 const products = [];
 
-for (let i = 1; i <= 50; i++) {
+for (let i = 1; i <= count; i++) {
   let type = casual.random_element([
     "TVs",
     "Appliances",
@@ -14,7 +15,7 @@ for (let i = 1; i <= 50; i++) {
     id: i,
     name: casual.title,
     type: type,
-    price: casual.integer(100, 500),
+    price: casual.integer(0, 500),
     rating: casual.double((from = 1), (to = 5)).toFixed(2),
     image: `./assets/images/product.${type}.webp`,
     description: casual.sentences((n = 15)),

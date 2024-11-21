@@ -1,36 +1,20 @@
 .navbar {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: #fef9f6;
-  padding: 0.5rem 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-bottom: 4px solid #e6e6e6;
-
-  .navbar-logo {
-    display: flex;
-    align-items: center;
-
-    img {
-      height: 40px;
-      width: auto;
-      border-radius: 50%;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      object-fit: contain;
-    }
-  }
+  padding: 2rem 1.5rem;
 
   .navbar-title {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 4rem;
+    font-weight: 700;
     text-align: center;
-    color: #6b705c;
-    font-family: "Poppins", sans-serif;
-    letter-spacing: 1px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    color: #202521;
+    font-family: "Inria Sans", sans-serif;
+
+    & a {
+      text-decoration: none;
+      color: #202521;
+    }
   }
 
   .navbar-cart {
@@ -38,16 +22,34 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
-    mat-icon {
-      font-size: 2rem;
-      color: #d4a373;
-      transition: transform 0.2s ease-in-out, color 0.2s;
-
-      &:hover {
-        transform: scale(1.1);
-        color: #cb997e;
-      }
-    }
   }
+}
+
+.shopping-bin {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  background: #388e3c;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.shopping-bin:hover {
+  transform: scale(1.1);
+  background: #fff;
+}
+
+.shopping-bin-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: #fff;
+  transition: color 0.2s ease;
+}
+
+.shopping-bin:hover .shopping-bin-icon {
+  color: #388e3c;
 }

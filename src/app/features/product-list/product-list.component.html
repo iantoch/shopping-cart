@@ -1,11 +1,16 @@
 <div class="layout">
   <aside class="filter-panel">
-    <app-filters></app-filters>
+    <app-filters (filtersChanged)="handleFilters($event)"></app-filters>
   </aside>
-  <button class="toggle-filter" (click)="toggleFilter()">
-    {{ isFilterCollapsed ? "Show Filters" : "Hide Filters" }}
-  </button>
-  <div class="product-grid">
+  <button class="toggle-filter" (click)="toggleFilter()">Filters</button>
+
+  <div
+    class="product-grid"
+    infinite-scroll
+    [infiniteScrollDistance]="1"
+    [infiniteScrollThrottle]="300"
+    (scrolled)="onScrollDown()"
+  >
     @for (product of products$ | async; track $index) {
     <div class="card">
       <div class="card-link" (click)="openDialog(product)">
@@ -15,9 +20,6 @@
           <p class="price">${{ product.price }}</p>
           <p class="rating">Rating: ⭐{{ product.rating }}</p>
         </div>
-      </div>
-      <div class="action">
-        <app-button (click)="addToCart(product)">Add to Cart</app-button>
       </div>
     </div>
     }

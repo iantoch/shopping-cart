@@ -9,10 +9,14 @@ export class ProductsEffects {
   loadProducts$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loadProducts),
-      mergeMap(() =>
-        this.productService
-          .getProducts()
-          .pipe(map((products) => loadProductsSuccess({ products })))
+      mergeMap(({ filters, page, limit }) =>
+        this.productService.getProducts(page, limit, filters).pipe(
+          map((response) =>
+            loadProductsSuccess({
+              products: response,
+            })
+          )
+        )
       )
     )
   );

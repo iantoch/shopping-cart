@@ -9,23 +9,61 @@ export const initialState: CartState = {
 
 export const cartReducer = createReducer(
   initialState,
-  on(CartActions.addProductToCart, (state, { product }) => ({
-    ...state,
-    products: [...state.products, product],
-    totalPrice: state.totalPrice + product.price,
-  })),
+  on(CartActions.addProductToCart, (state, { product }) => {
+    const existingProductIndex = state.products.findIndex(
+      (p) => p.id === product.id
+    );
+
+    if (existingProductIndex >= 0) {
+      const updatedProducts = state.products.map((p, index) =>
+        index === existingProductIndex ? { ...p, count: p.count + 1 } : p
+      );
+
+      return {
+        ...state,
+        products: updatedProducts,
+        totalPrice: state.totalPrice + product.price,
+      };
+    } else {
+      return {
+        ...state,
+        products: [...state.products, { ...product, count: 1 }],
+        totalPrice: state.totalPrice + product.price,
+      };
+    }
+  }),
+
   on(CartActions.removeProductFromCart, (state, { productId }) => {
-    const updatedProducts = state.products.filter(
-      (product) => product.id !== productId
+    const existingProductIndex = state.products.findIndex(
+      (product) => product.id === productId
     );
-    const updatedTotalPrice = updatedProducts.reduce(
-      (total, product) => total + product.price,
-      0
-    );
-    return {
-      ...state,
-      products: updatedProducts,
-      totalPrice: updatedTotalPrice,
-    };
+
+    if (existingProductIndex >= 0) {
+      const productToRemove = state.products[existingProductIndex];
+
+      if (productToRemove.count > 1) {
+        const updatedProducts = state.products.map((p, index) =>
+          index === existingProductIndex ? { ...p, count: p.count - 1 } : p
+        );
+
+        return {
+          ...state,
+          products: updatedProducts,
+          totalPrice: state.totalPrice - productToRemove.price,
+        };
+      } else {
+        const updatedProducts = state.products.filter(
+          (product) => product.id !== productId
+        );
+
+        return {
+          ...state,
+          products: updatedProducts,
+          totalPrice: state.totalPrice - productToRemove.price,
+        };
+      }
+    }
+
+    return state;
   })
 );

@@ -10,18 +10,19 @@ import {
   addProductToCart,
   removeProductFromCart,
 } from '../../store/cart/cart.actions';
-import { AppState } from '../../store/state.model';
+import { AppState, CartProduct } from '../../store/state.model';
 import { CommonModule } from '@angular/common';
+import { ButtonComponent } from '../../shared/components/button/button.component';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ButtonComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
 export class CartComponent {
-  cartProducts$: Observable<Product[]>;
+  cartProducts$: Observable<CartProduct[]>;
   cartTotalPrice$: Observable<number>;
 
   constructor(private store: Store<AppState>) {
