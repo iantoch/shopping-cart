@@ -1,0 +1,36 @@
+<div class="filter-container">
+  <div class="search-box">
+    <label for="search">Search:</label>
+    <input
+      type="text"
+      id="search"
+      [(ngModel)]="searchText"
+      (input)="onFilterChange()"
+      placeholder="Search products..."
+    />
+  </div>
+
+  <div class="type-filter">
+    <label for="type">Type:</label>
+    <select id="type" [(ngModel)]="selectedType" (change)="onFilterChange()">
+      @for (type of types; track $index) {
+      <option [value]="type">{{ type }}</option>
+      }
+    </select>
+  </div>
+
+  <div class="price-filter">
+    <label>Price Range:</label>
+    @for (range of priceRanges; track $index) {
+    <div>
+      <input
+        type="checkbox"
+        [id]="range.value"
+        [value]="range.value"
+        (change)="onPriceChange($event)"
+      />
+      <label [for]="range.value">{{ range.label }}</label>
+    </div>
+    }
+  </div>
+</div>
