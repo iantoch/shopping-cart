@@ -16,12 +16,10 @@ export class ProductsService {
     limit: number = 10,
     filters?: Filters
   ): Observable<Product[]> {
-    let params = new HttpParams()
-      .set('_page', page.toString())
-      .set('_limit', limit.toString());
+    let params = new HttpParams().set('_page', page).set('_limit', limit);
 
     if (filters?.search) {
-      params = params.set('q', filters.search);
+      params = params.set('name', filters.search);
     }
     if (filters?.selectedType) {
       let type = filters.selectedType === 'All' ? '' : filters.selectedType;
@@ -29,9 +27,7 @@ export class ProductsService {
     }
     if (filters?.priceRanges) {
       filters.priceRanges.forEach((range: { gte: number; lte: number }) => {
-        params = params
-          .set('price_gte', range.gte.toString())
-          .set('price_lte', range.lte.toString());
+        params = params.set('price_gte', range.gte).set('price_lte', range.lte);
       });
     }
     return this.http.get<Product[]>(this.apiUrl, { params });

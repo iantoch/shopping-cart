@@ -13,11 +13,12 @@ import {
 import { AppState, CartProduct } from '../../store/state.model';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../shared/components/button/button.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [CommonModule, ButtonComponent],
+  imports: [CommonModule, ButtonComponent, RouterModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })

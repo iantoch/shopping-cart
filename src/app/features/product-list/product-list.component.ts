@@ -60,7 +60,8 @@ export class ProductListComponent implements OnInit {
     this.filters = filters;
     this.store.dispatch(
       loadProducts({
-        page: this.currentPage,
+        // reset page for filter result
+        page: 1,
         limit: this.limit,
         filters: filters,
       })

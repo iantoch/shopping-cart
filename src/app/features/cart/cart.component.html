@@ -1,10 +1,16 @@
-<!-- @if ((cartProducts$ | async)?.length > 0) { -->
+@if (cartProducts$ | async; as cartProducts) { @if (cartProducts.length === 0) {
+<div class="empty-cart">
+  <h2>Your cart is empty!</h2>
+  <h3>But you can fix this! Just keep shopping.</h3>
+  <app-button>
+    <a routerLink="/">Back to store!</a>
+  </app-button>
+</div>
+} @else {
 <div class="container">
   <div class="items-list">
-    <div
-      *ngFor="let product of cartProducts$ | async"
-      class="card-item-container"
-    >
+    @for (product of cartProducts$ | async; track $index) {
+    <div class="card-item-container">
       <div class="cart-item">
         <img [src]="product.image" alt="{{ product.name }}" />
         <div class="cart-item-info">
@@ -19,6 +25,7 @@
         </div>
       </div>
     </div>
+    }
   </div>
   <div class="total">
     <h2>Order now</h2>
@@ -27,9 +34,4 @@
     <app-button>Purchase</app-button>
   </div>
 </div>
-<!-- }  -->
-@if ((cartProducts$ | async)?.length === 0) {
-<div>
-  <p>Your cart is empty!</p>
-</div>
-}
+} }
