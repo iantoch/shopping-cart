@@ -1,27 +1,31 @@
-# ShoppingCart
+##To Run the Project:
+npx json-server --watch db.json --port 3000
+ng serve
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.11.
+##Implemented Features:
+✅ Product List
+✅ Shopping Cart
+✅ Filter Form
+✅ Basic UI
+✅ Modal Window with Product Details
+✅ All data flows through NgRx
 
-## Development server
+##Partially Implemented Features:
+⚠️ Infinite Scroll
+⚠️ Filtering
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+##Challenges Faced:
+The main challenges were related to JSON Server. Filtering and sending the necessary parameters in the request were successfully implemented, but the server has limited functionality. Unfortunately, there wasn’t enough time to fully explore this issue.
 
-## Code scaffolding
+There were difficulties with the form. A delay was added to prevent the form from being triggered every time the user types something in the search field, but I didn’t want to implement search only by pressing a button.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Due to server limitations, the search works only for full name matches. The generated data contains too many similar words in the description, and if partial search across all fields is implemented, the search result would almost always be the same as a simple query without parameters. Also price filtering works only for one price range
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+##Areas for Improvement:
+🎨 Design
+🔁 Create more reusable components (product card, label, etc.)
+⏳ Add loaders
+⚠️ Handle errors during requests using NgRx and display them via snackbar
+⚠️ Better organize file structure and interfaces/types
+🔄 Fully implement infinite scroll and filtering functionality
+🔍 Refactor search logic and add input clearing functionality
